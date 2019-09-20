@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="green.pro.business.BodServiceImpl">
+<!--―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― 글 등록/김병우  -->
+<!-- 게시글 등록하기 --><!-- BoardVO -->
+<insert id="bInsert">
+		INSERT INTO mt_${b_city}_board VALUES(#{b_city},(SELECT NVL(MAX(b_seq),1)+1 FROM mt_${b_city}_board),
+		#{b_select},#{b_title},#{b_id},#{b_date},#{b_content},
+		#{b_cnt},#{b_adrimage})
+</insert>
+<!--―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― 글 삭제/김병우-->
+<!-- 게시글 삭제하기 --><!-- BoardVO -->
+<delete id="bDelete">
+	DELETE mt_${b_city}_board WHERE b_seq=#{b_seq}
+</delete>
+<!--―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― 글 수정 /김병우 -->
+<!-- 게시글 수정하기 --><!-- BoardVO -->
+<update id="bUpdate">
+	UPDATE mt_${b_city}_board SET b_title=#{b_title}, 
+	b_date=#{b_date}, b_content=#{b_content},b_adrimage=#{b_adrimage} WHERE b_seq=#{b_seq}
+</update>
+<!--―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― 내가 쓴 글 조회 / 김병우 -->
+<!-- 내 게시글 보기  --><!-- BoardVO -->
+<select id="bMyBoard" resultType="green.pro.vo.BoardVO">
+	select * from
+	(select * from
+	(SELECT * FROM mt_1_board
+	UNION
+	SELECT * FROM mt_2_board
+	UNION
+	SELECT * FROM mt_3_board
+	UNION
+	SELECT * FROM mt_4_board
+	UNION
+	SELECT * FROM mt_5_board
+	UNION
+	SELECT * FROM mt_6_board
+	UNION
+	SELECT * FROM mt_7_board
+	UNION
+	SELECT * FROM mt_8_board) WHERE b_id=#{p_id}
+	ORDER BY b_city)
+	<!--  <![CDATA[ WHERE ROWNUM>=${p_end} AND ROWNUM<=${p_start}	]]> -->
+</select>
+<!--――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――  -->
+<!-- 게시글 보기  -->	<!-- PageVO -->
+
+  <select id="bAllBoard" resultType="green.pro.vo.ResultVO">
+	 SELECT * FROM(SELECT ROWNUM NUMROW,mt_${p_city}_${p_selectname}.* FROM mt_${p_city}_${p_selectname}
+	 <if test="p_select==1">
+	ORDER BY B_SEQ DESC) 
+	 </if>
+	 <if test="p_select==2">
+	ORDER BY F_RANK ASC) 
+	 </if>
+	 <if test="p_select==3">
+	ORDER BY L_RANK ASC) 
+	 </if>
+	 <![CDATA[ WHERE NUMROW >= #{p_end} AND NUMROW <= #{p_start}	]]> 
+ </select>
+<!--――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――  -->
+<!-- 게시글 숫자 구하기 --> <!-- PageVO -->
+ <select id="bTotalRow" resultType="int">
+ 	SELECT COUNT(*) FROM mt_${p_city}_${p_selectname}
+ </select> 
+<!--――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――  -->
+ <select id="bMyTotalRow" resultType="int">
+		SELECT count(*) FROM(
+		SELECT * FROM mt_1_board
+		UNION
+		SELECT * FROM mt_2_board
+		UNION
+		SELECT * FROM mt_3_board
+		UNION
+		SELECT * FROM mt_4_board
+		UNION
+		SELECT * FROM mt_5_board
+		UNION
+		SELECT * FROM mt_6_board
+		UNION
+		SELECT * FROM mt_7_board
+		UNION
+		SELECT * FROM mt_8_board) WHERE b_id=#{p_id}
+ </select> 
+<!--――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――  -->
+<!--  게시글 상세내용 보기 --> <!-- BoardVO -->
+<select id="bDetailBoard" resultType="green.pro.vo.ResultVO"><!-- BoardVO -->
+	SELECT * FROM mt_${p_city}_${p_selectname} WHERE 
+	<if test="p_select==1">b_seq=#{p_seq}</if>
+	<if test="p_select==2">f_seq=#{p_seq}</if>
+	<if test="p_select==3">l_seq=#{p_seq}</if>
+</select>
+<!--――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――  -->
+<!--  지역페이지 선택 및 페이지 정보 --> <!-- AreaVO -->
+<select id="bSelectStyle" resultType="green.pro.vo.StyleVO">
+	SELECT * FROM mt_style WHERE s_city=#{p_city}
+</select>
+
+
+</mapper>

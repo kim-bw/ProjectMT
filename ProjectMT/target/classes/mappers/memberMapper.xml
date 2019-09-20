@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="green.pro.business.MemServiceImpl">
+<!--―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― 로그인/김병우 -->
+<!-- 로그인 --><!-- MemberVO -->
+<select id="mLogin" resultType="green.pro.vo.MemberVO">
+	SELECT * FROM mt_member 
+	WHERE m_id=#{m_id} AND m_password=#{m_password}
+</select>
+<!--―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― 상세정보 /김병우-->
+<!-- 개인정보 보기 --><!-- MemberVO -->
+<select id="mDetail" resultType="green.pro.vo.MemberVO">
+	SELECT * FROM mt_member 
+	WHERE m_id=#{m_id}
+</select>
+<!--―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― 회원가입 /김병우-->
+<!-- 회원가입하기 --><!-- MemberVO -->
+<insert id="mJoin">
+INSERT INTO mt_member 
+VALUES(#{m_id},#{m_password},#{m_name},#{m_tel},#{m_postcode},#{m_roadcode},#{m_detailaddress},
+#{m_birth},#{m_grade},#{m_level},#{m_suc},#{m_fail},#{m_adrimage},1,1451)
+</insert>
+
+<!--―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― 정보수정 /김병우-->
+<!-- 회원정보 수정하기 --><!-- MemberVO -->
+<update id="mUpdate">
+UPDATE mt_member 
+SET m_password=#{m_password},m_name=#{m_name},m_tel=#{m_tel},
+m_postcode=#{m_postcode},m_roadcode=#{m_roadcode},m_detailaddress=#{m_detailaddress},
+m_birth=#{m_birth},m_grade=#{m_grade},m_level=#{m_level},m_suc=#{m_suc},
+m_fail=#{m_fail},m_adrimage=#{m_adrimage},m_city=#{m_city},m_seq=#{m_seq}
+WHERE m_id=#{m_id}
+</update>
+<!--―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― 회원삭제/김병우-->
+<!-- 탈퇴하기 --><!-- MemberVO -->
+<delete id="mDelete">
+DELETE mt_member WHERE m_id=#{m_id}
+</delete>
+<!--―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― 회원삭제/김병우-->
+
+
+</mapper>
