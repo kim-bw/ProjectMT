@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import green.pro.business.BodService;
-import green.pro.vo.BoardVO;
-import green.pro.vo.PageVO;
-import green.pro.vo.ReplyVO;
-import green.pro.vo.StyleVO;
+import green.pro.domain.BoardVO;
+import green.pro.domain.PageVO;
+import green.pro.domain.ReplyVO;
+import green.pro.domain.StyleVO;
 
 //단순한 페이지 이동을 위한 controller
 

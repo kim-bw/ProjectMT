@@ -1,4 +1,4 @@
-package green.pro.vo;
+package green.pro.domain;
 import lombok.Data;
 
 @Data

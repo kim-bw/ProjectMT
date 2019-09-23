@@ -6,7 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import green.pro.vo.MemberVO;
+import green.pro.domain.MemberVO;
 
 @Service("member")
 public class MemServiceImpl implements MemService {

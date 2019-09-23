@@ -8,9 +8,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import green.pro.vo.BoardVO;
-import green.pro.vo.PageVO;
-import green.pro.vo.ReplyVO;
+import green.pro.domain.BoardVO;
+import green.pro.domain.PageVO;
+import green.pro.domain.ReplyVO;
 
 @Service("reply")
 public class RepServiceImpl implements RepService {

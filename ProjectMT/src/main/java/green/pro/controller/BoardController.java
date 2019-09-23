@@ -17,11 +17,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import green.pro.business.BodService;
 import green.pro.business.RepService;
-import green.pro.vo.BoardVO;
-import green.pro.vo.PageVO;
-import green.pro.vo.ReplyVO;
-import green.pro.vo.ResultVO;
-import green.pro.vo.StyleVO;
+import green.pro.domain.BoardVO;
+import green.pro.domain.PageVO;
+import green.pro.domain.ReplyVO;
+import green.pro.domain.ResultVO;
+import green.pro.domain.StyleVO;
 
 @Controller
 public class BoardController {
@@ -56,11 +56,6 @@ public class BoardController {
 		
 		bvo = SystemClass.sessionCheck(bvo, request);
 		System.out.println(bvo.getB_id());
-		
-		//시간을 위에 지정한 format형식으로 저장
-		time = format.format(sys_date);
-		//bvo에 셋
-		bvo.setB_date(time);
 		
 		//mapper
 		result = bs.insertBoard(bvo);
@@ -137,10 +132,6 @@ System.out.println(result);
 //―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――	
 	@RequestMapping("updateBoard")
 	public ModelAndView updateBoard(ModelAndView mv, BoardVO bvo) {
-
-		//시스템 시간으로 b_date 셋
-		time = format.format(sys_date);
-		bvo.setB_date(time);
 		
 		//오류방지 : b_adrimage가 null이면 noimage 삽입해서 오류방지
 		if(bvo.getB_adrimage()==null) {

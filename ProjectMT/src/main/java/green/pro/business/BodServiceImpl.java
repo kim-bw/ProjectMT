@@ -9,10 +9,10 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import green.pro.vo.BoardVO;
-import green.pro.vo.PageVO;
-import green.pro.vo.ResultVO;
-import green.pro.vo.StyleVO;
+import green.pro.domain.BoardVO;
+import green.pro.domain.PageVO;
+import green.pro.domain.ResultVO;
+import green.pro.domain.StyleVO;
 
 @Service("board")
 public class BodServiceImpl implements BodService {

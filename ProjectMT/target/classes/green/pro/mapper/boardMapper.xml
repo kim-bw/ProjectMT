@@ -7,8 +7,8 @@
 <!-- 게시글 등록하기 --><!-- BoardVO -->
 <insert id="bInsert">
 		INSERT INTO mt_${b_city}_board VALUES(#{b_city},(SELECT NVL(MAX(b_seq),1)+1 FROM mt_${b_city}_board),
-		#{b_select},#{b_title},#{b_id},#{b_date},#{b_content},
-		#{b_cnt},#{b_adrimage})
+		#{b_select},#{b_title},#{b_id},sysdate,#{b_content},
+		#{b_cnt},#{b_adrimage},sysdate)
 </insert>
 <!--―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― 글 삭제/김병우-->
 <!-- 게시글 삭제하기 --><!-- BoardVO -->
@@ -19,11 +19,11 @@
 <!-- 게시글 수정하기 --><!-- BoardVO -->
 <update id="bUpdate">
 	UPDATE mt_${b_city}_board SET b_title=#{b_title}, 
-	b_date=#{b_date}, b_content=#{b_content},b_adrimage=#{b_adrimage} WHERE b_seq=#{b_seq}
+	b_updateDate=sysdate, b_content=#{b_content},b_adrimage=#{b_adrimage} WHERE b_seq=#{b_seq}
 </update>
 <!--―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― 내가 쓴 글 조회 / 김병우 -->
 <!-- 내 게시글 보기  --><!-- BoardVO -->
-<select id="bMyBoard" resultType="green.pro.vo.BoardVO">
+<select id="bMyBoard" resultType="green.pro.domain.BoardVO">
 	select * from
 	(select * from
 	(SELECT * FROM mt_1_board
@@ -47,7 +47,7 @@
 <!--――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――  -->
 <!-- 게시글 보기  -->	<!-- PageVO -->
 
-  <select id="bAllBoard" resultType="green.pro.vo.ResultVO">
+  <select id="bAllBoard" resultType="green.pro.domain.ResultVO">
 	 SELECT * FROM(SELECT ROWNUM NUMROW,mt_${p_city}_${p_selectname}.* FROM mt_${p_city}_${p_selectname}
 	 <if test="p_select==1">
 	ORDER BY B_SEQ DESC) 
@@ -86,7 +86,7 @@
  </select> 
 <!--――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――  -->
 <!--  게시글 상세내용 보기 --> <!-- BoardVO -->
-<select id="bDetailBoard" resultType="green.pro.vo.ResultVO"><!-- BoardVO -->
+<select id="bDetailBoard" resultType="green.pro.domain.ResultVO"><!-- BoardVO -->
 	SELECT * FROM mt_${p_city}_${p_selectname} WHERE 
 	<if test="p_select==1">b_seq=#{p_seq}</if>
 	<if test="p_select==2">f_seq=#{p_seq}</if>
@@ -94,7 +94,7 @@
 </select>
 <!--――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――  -->
 <!--  지역페이지 선택 및 페이지 정보 --> <!-- AreaVO -->
-<select id="bSelectStyle" resultType="green.pro.vo.StyleVO">
+<select id="bSelectStyle" resultType="green.pro.domain.StyleVO">
 	SELECT * FROM mt_style WHERE s_city=#{p_city}
 </select>
 

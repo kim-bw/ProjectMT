@@ -8,7 +8,7 @@
 <insert id="rInsert">	
 	INSERT INTO mt_${r_city}_reply
 	VALUES(#{r_city},(SELECT NVL(MAX(r_seq),1)+1 FROM mt_${r_city}_reply),
-	#{r_select},#{r_num},#{r_id},#{r_content},#{r_date},#{r_root},#{r_step})
+	#{r_select},#{r_num},#{r_id},#{r_content},sysdate,#{r_root},#{r_step,sysdate})
 </insert>
 <!--―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― 글 삭제/김병우-->
 <!-- 댓글 삭제하기  --><!-- replyVO -->
@@ -20,10 +20,10 @@
 <!-- 댓글 수정하기  --><!-- replyVO -->
 <update id="rUpdate">
 	<!-- seq로 조회하여 글 내용만 수정할 수 있음 -->
-	UPDATE mt_${r_city}_reply SET r_content=#{r_content} WHERE r_seq=#{r_seq}
+	UPDATE mt_${r_city}_reply SET r_content=#{r_content} r_updateDate=sysdate WHERE r_seq=#{r_seq}
 </update>
 <!--―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― 글 보기 /김병우 -->
-<select id="rMyReply" resultType="green.pro.vo.ReplyVO">
+<select id="rMyReply" resultType="green.pro.domain.ReplyVO">
 	<!-- 1~8게시판에서 ID를 조건으로 해서 검색 후 SELECT순으로(게시판) 정렬한 후 
 	ROWNUM으로 PVO의 정보대로 페이징을 함 -->
 	SELECT * FROM
@@ -79,7 +79,7 @@
 
 
 
-<select id="rAllReply" resultType="green.pro.vo.ReplyVO">
+<select id="rAllReply" resultType="green.pro.domain.ReplyVO">
 	<![CDATA[
 
 

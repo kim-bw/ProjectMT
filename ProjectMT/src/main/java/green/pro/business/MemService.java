@@ -2,7 +2,7 @@
 
 package green.pro.business;
 
-import green.pro.vo.MemberVO;
+import green.pro.domain.MemberVO;
 
 public interface MemService {
 

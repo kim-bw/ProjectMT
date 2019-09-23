@@ -1,4 +1,6 @@
-package green.pro.vo;
+package green.pro.domain;
+import java.util.Date;
+
 import lombok.Data;
 
 @Data
@@ -10,7 +12,8 @@ public class ReplyVO{
 	private int r_num;
 	private String r_id;
 	private String r_content;
-	private String r_date;
+	private Date r_date;
+	private Date r_updateDate;
 	private int r_root;
 	private int r_step;
 	

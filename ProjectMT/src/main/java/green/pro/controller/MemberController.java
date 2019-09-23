@@ -24,7 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import green.pro.business.MemService;
-import green.pro.vo.MemberVO;
+import green.pro.domain.MemberVO;
 
 
 

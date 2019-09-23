@@ -18,10 +18,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import green.pro.business.RepService;
-import green.pro.vo.BoardVO;
-import green.pro.vo.PageVO;
-import green.pro.vo.ReplyVO;
-import green.pro.vo.ResultVO;
+import green.pro.domain.BoardVO;
+import green.pro.domain.PageVO;
+import green.pro.domain.ReplyVO;
+import green.pro.domain.ResultVO;
 
 @Controller
 public class ReplyController {
@@ -60,11 +60,6 @@ public class ReplyController {
 		rvo.setR_content("오류방지코드 작동!");
 	}
 		
-	//글쓴 시간을 서버에서 정해준다. data 클래스 사용
-	time = format.format(sys_date);
-	rvo.setR_date(time);
-
-	
 System.out.println("rvo DB 전은  =>"+rvo);
 //DB에 저장
 result = rs.insertReply(rvo);		

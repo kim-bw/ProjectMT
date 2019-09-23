@@ -5,13 +5,13 @@
 <mapper namespace="green.pro.business.MemServiceImpl">
 <!--―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― 로그인/김병우 -->
 <!-- 로그인 --><!-- MemberVO -->
-<select id="mLogin" resultType="green.pro.vo.MemberVO">
+<select id="mLogin" resultType="green.pro.domain.MemberVO">
 	SELECT * FROM mt_member 
 	WHERE m_id=#{m_id} AND m_password=#{m_password}
 </select>
 <!--―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― 상세정보 /김병우-->
 <!-- 개인정보 보기 --><!-- MemberVO -->
-<select id="mDetail" resultType="green.pro.vo.MemberVO">
+<select id="mDetail" resultType="green.pro.domain.MemberVO">
 	SELECT * FROM mt_member 
 	WHERE m_id=#{m_id}
 </select>

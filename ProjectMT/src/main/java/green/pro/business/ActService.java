@@ -4,7 +4,7 @@ package green.pro.business;
 
 import java.util.ArrayList;
 
-import green.pro.vo.PlaceVO;
+import green.pro.domain.PlaceVO;
 
 public interface ActService {
 

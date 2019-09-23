@@ -15,11 +15,11 @@ import green.pro.business.ActService;
 import green.pro.business.BodService;
 import green.pro.business.MemService;
 import green.pro.business.RepService;
-import green.pro.vo.BoardVO;
-import green.pro.vo.MemberVO;
-import green.pro.vo.PageVO;
-import green.pro.vo.PlaceVO;
-import green.pro.vo.ReplyVO;
+import green.pro.domain.BoardVO;
+import green.pro.domain.MemberVO;
+import green.pro.domain.PageVO;
+import green.pro.domain.PlaceVO;
+import green.pro.domain.ReplyVO;
 
 @Controller
 public class TestController {

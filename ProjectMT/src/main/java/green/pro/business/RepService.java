@@ -4,9 +4,9 @@ package green.pro.business;
 
 import java.util.ArrayList;
 
-import green.pro.vo.BoardVO;
-import green.pro.vo.PageVO;
-import green.pro.vo.ReplyVO;
+import green.pro.domain.BoardVO;
+import green.pro.domain.PageVO;
+import green.pro.domain.ReplyVO;
 
 public interface RepService {
 

@@ -8,7 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import green.pro.vo.PlaceVO;
+import green.pro.domain.PlaceVO;
 
 @Service("action")
 public class ActServiceImpl implements ActService {

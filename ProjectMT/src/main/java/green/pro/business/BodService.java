@@ -4,10 +4,10 @@ package green.pro.business;
 
 import java.util.ArrayList;
 
-import green.pro.vo.BoardVO;
-import green.pro.vo.PageVO;
-import green.pro.vo.ResultVO;
-import green.pro.vo.StyleVO;
+import green.pro.domain.BoardVO;
+import green.pro.domain.PageVO;
+import green.pro.domain.ResultVO;
+import green.pro.domain.StyleVO;
 
 public interface BodService {
 

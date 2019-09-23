@@ -6,7 +6,7 @@
 
 <!--――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――  -->
  <!-- place 1~8을 랜덤으로 섞고 그 중에서 10개만 뽑아서 placevo arrayList로 리턴 -->
- <select id="aGoMission" resultType="green.pro.vo.PlaceVO">
+ <select id="aGoMission" resultType="green.pro.domain.PlaceVO">
 		select * from
 		(select * from
 		(SELECT * FROM mt_1_place
